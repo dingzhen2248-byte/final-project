@@ -16,8 +16,6 @@ def clean_data(df):
 
     df = df.dropna(subset=['route_id'])
 
-    # Green 线补齐数据
-    # df.loc[df['route_or_line'] == 'Green', ['route_color', 'route_id', 'route_long_name', 'route_type']] = ['00843D', 'Green Line', 'Green Line', 'Light Rail']
 
     df['route_color'] = '#' + df['route_color'].astype(str)
 
