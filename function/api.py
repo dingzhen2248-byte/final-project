@@ -1,6 +1,6 @@
 import requests
 
-# 发送get请求
+# send get request
 def get_request(base_url,params):
     try:
         response = requests.get(base_url, params=params)
@@ -12,7 +12,7 @@ def get_request(base_url,params):
     return data
 
 
-# 发送post请求
+# send post request
 def post_request(base_url,params):
     try:
         response = requests.post(base_url, json=params)

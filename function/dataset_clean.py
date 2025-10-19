@@ -1,5 +1,6 @@
 import pandas as pd
-from dataset_get import read_data_csv
+from capstone_group4 import read_data_csv
+from sklearn.preprocessing import LabelEncoder
 
 def clean_data(df):
     """
@@ -18,12 +19,12 @@ def clean_data(df):
 
 
     df['route_color'] = '#' + df['route_color'].astype(str)
-
+    le = LabelEncoder()
+    df['station_name_encoded'] = le.fit_transform(df['station_name'])
 
 
     if 'service_date' and 'time_period' in df.columns:
-        df['time_period'] = df['time_period'].str.replace('()', '', regex=True)
-        df['time'] = pd.to_datetime(df['service_date'] + ' ' + df['time_period'], format='%m/%d/%Y (%H:%M:%S)')
-        print("time:", df['time'])
+        df['time_period'] = df['time_period'].str.replace(r'[()]', '', regex=True)
+        df['time'] = pd.to_datetime(df['service_date'] + ' ' + df['time_period'])
 
     return df
